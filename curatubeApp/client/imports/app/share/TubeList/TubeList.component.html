@@ -1,0 +1,12 @@
+<div *ngIf="this.ShowType=='Summery'" class="contents">
+<section class="content" *ngFor="let TubeItem of TubeItems | async; let i = index">
+    <TubeInfo [TubeItem]="this.TubeItem" [ShowVideoItems]="this.ShowVideoItems" [ShowType]="this.ShowType"></TubeInfo>
+</section>
+</div>
+<div *ngIf="this.ShowType=='Detail'">
+    <section class="content" *ngFor="let TubeItem of TubeItems | async; let i = index">
+        <div *ngIf="i<1">
+        <TubeInfo [TubeItem]="this.TubeItem" [ShowVideoItems]="this.ShowVideoItems" [ShowType]="this.ShowType"></TubeInfo>
+        </div>
+    </section>
+</div>

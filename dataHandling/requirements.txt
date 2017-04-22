@@ -1,0 +1,6 @@
+asyncio
+aiofiles
+ujson
+pymongo
+aiohttp
+bs4

@@ -1,0 +1,22 @@
+<div>
+        <section class="content content-with-sidebar followers margin-bottom-10">
+            <div class="row secBg">
+                <div class="large-12 columns">
+                    <div class="row column head-text clearfix">
+                        <h4 class="pull-left"><i class="fa fa-users"></i>Tubes</h4>
+                    </div>
+                    <div class="row">
+                        <div class="large-2 small-6 medium-3 columns" *ngFor="let TubeItem of TubeItems | async; let i = index">
+                            <div (click)="goTubePage(TubeItem._id)" class="follower">
+                                <div class="img-bg">
+                                     <img src="{{TubeItem.channelList[0].snippet.thumbnails.high.url}}" alt="followers">
+                                </div>
+                                <button  name="follow"><h3 class="tubenamesmall">{{TubeItem.tubeName}}</h3></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="show-more-inner text-center"></div>
+            </div>
+        </section>
+</div>

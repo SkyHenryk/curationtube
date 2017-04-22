@@ -1,0 +1,46 @@
+<div class="position-left light-off-menu" >
+    <div class="off-menu-close"></div>
+    <div class="responsive-search">
+            <form method="post">
+                <div class="input-group">
+                    <input class="input-group-field" type="text" placeholder="search Here" #searchbox (keyup.enter)="GoSearchPage(searchbox.value)">
+                    <div class="input-group-button">
+                        <button type="submit" name="search" (click)="GoSearchPage(searchbox.value)"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    <ul class="vertical menu off-menu" data-responsive-menu="drilldown">
+        <li *ngIf="this.hasFavorite===true" class="has-submenu" data-dropdown-menu="example1">
+            <a (click)="goPage('/favorite/')"><i class="fa fa-bookmark"></i>Favorite</a>
+        </li>
+        <li class="has-submenu">
+            <a (click)="goPage('/redirect/')"><i class="fa fa-home"></i>Home</a>
+        </li>
+        <li class="has-submenu"><a><i class="fa fa-th"></i>category</a>
+            <ul class="submenu menu vertical" data-submenu data-animate="slide-in-down slide-out-up">
+                <li><a (click)="GoCatergory('main')"><i class="fa fa-minus"></i>Main</a></li>
+                <li><a (click)="GoCatergory('popular')"><i class="fa fa-fire"></i>Popular</a></li>
+                <li><a (click)="GoCatergory('news')"><i class="fa fa-newspaper-o"></i>News</a></li>
+                <li><a (click)="GoCatergory('education')"><i class="fa fa-graduation-cap"></i>Education</a></li>
+                <li><a (click)="GoCatergory('games')"><i class="fa fa-gamepad"></i>Games</a></li>
+                <li><a (click)="GoCatergory('tech')"><i class="fa fa-rocket"></i>Tech</a></li>
+                <li><a (click)="GoCatergory('travel')"><i class="fa fa-suitcase"></i>Travel</a></li>
+                <li><a (click)="GoCatergory('shows')"><i class="fa fa-television"></i>shows</a></li>
+                <li><a (click)="GoCatergory('entertainment')"><i class="fa fa-thumbs-o-up"></i>Entertainment</a></li>
+                <li><a (click)="GoCatergory('music')"><i class="fa fa-music"></i>Music</a></li>
+                <li><a (click)="GoCatergory('people')"><i class="fa fa-users"></i>People</a></li>
+                <li><a (click)="GoCatergory('autos')"><i class="fa fa-car"></i>Autos</a></li>
+                <li><a (click)="GoCatergory('sports')"><i class="fa fa-futbol-o"></i>Sports</a></li>
+                <li><a (click)="GoCatergory('film')"><i class="fa fa-film"></i>Film</a></li>
+                <li><a (click)="GoCatergory('howto')"><i class="fa fa-leanpub"></i>Tips</a></li>
+                <li><a (click)="GoCatergory('nonprofit')"><i class="fa fa-heart-o"></i>Non Profit</a></li>
+                <li><a (click)="GoCatergory('comedy')"><i class="fa fa-smile-o"></i>Comedy</a></li>
+                <li><a (click)="GoCatergory('animals')"><i class="fa fa-eye"></i>Animals</a></li>
+            </ul>
+        </li>
+
+        <li><a (click)="goPage('/privacy/')"><i class="fa fa-book"></i>privacy</a></li>
+        <li><a (click)="goPage('/contact/')"><i class="fa fa-envelope"></i>contact</a></li>
+    </ul>
+</div>

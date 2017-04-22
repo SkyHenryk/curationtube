@@ -1,0 +1,154 @@
+<div class="feed pad-bottom-30" *ngIf="this.ShowType=='Summery'">
+    <div class="row secBg feedone">
+        <div class="large-12 columns">
+            <div class="row column head-text clearfix">
+
+                <div class="grid-system pull-left">
+                     <div class="main-heading">
+                        <div class="padding-14">
+                            <a class="head-title" (click)="goTubePage(TubeItem._id)">
+                                <h2 class="tubename">{{TubeItem.tubeName}}</h2>
+                            </a>
+                        </div>
+                     </div>
+                </div>
+                <div class="grid-system pull-right">
+                    <button class="button radius small primary" (click)="changeCategory('channellist')">Edit Channel List</button>
+                    <button class="button radius small" (click)="changeCategory('today')">Today ({{todayVideoItemsSize}})</button>
+                    <button class="button radius small" (click)="changeCategory('thisweek')">This week ({{thisweekVideoItemsSize}})</button>
+                    <button class="button radius small" (click)="changeCategory('mostwatched')">Most Watched ({{viewCountOrderItemsSize}})</button>
+                </div>
+            </div>
+            <div class="tabs-content list-group" data-tabs-content="newVideos">
+                <div class="tabs-panel is-active" id="new-all">
+                    <div class="row">
+                        <div id="{{TubeItem._id}}" class="large-12 columns" >
+                            <div class="profile-inner" >
+                                <section class="content content-with-sidebar followers margin-bottom-10">
+                                    <div class="row secBg">
+                                        <div class="large-12 columns">
+                                            <div class="row column head-text clearfix">
+                                                <h4 class="pull-left"><i class="fa fa-users"></i>Channel List</h4>
+                                                <div class="grid-system pull-right">
+                                                <button class="button radius small maincolor" (click)="selectChannelAll()">SELECT ALL</button>
+                                                <button class="button radius small" (click)="unSelectChannelAll()">UNSELECT ALL</button>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="large-2 small-6 medium-3 columns" *ngFor="let channel of this.channelList">
+                                                    <div class="follower channelbox" (click)="selectChannel($event,channel)">
+                                                        <div class="channel-select">selected</div>
+                                                        <div class="img-bg">
+                                                             <img src={{channel.snippet.thumbnails.medium.url}} alt="followers">
+                                                        </div>
+                                                        <div class="channel-name-wrap">
+                                                            <span class="channel-name">{{channel.name}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                        <div *ngIf="this.currentCategory !='channellist'" >
+                            <div class="videoinfo" *ngFor="let video of this.videoList; let i = index">
+                                <videoInfo *ngIf="i<this.maxShowVideoItems"[currentCategory]="this.currentCategory" [video]="this.video" [maxShowVideoItems]="this.maxShowVideoItems" [ShowType]="this.ShowType">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid-system pull-right">
+                            <button class="button radius tiny"(click)="showmore()" id="showmore-{{TubeItem._id}}">SHOW MORE</button>
+                        </div>
+                </div>
+                <div class="tabs-panel is-active" id="new-channel-list">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row secBg" *ngIf="this.ShowType=='Detail'">
+        <div class="row">
+        <div class="large-4 columns">
+            <aside class="secBg sidebar">
+                <div class="row">
+                    <div class="large-12 columns">
+                        <div class="widgetBox">
+                            <div class="widgetTitle">
+                                <h2 class="tubename">{{TubeItem.tubeName}}</h2>
+                            </div>
+                            <div class="widgetContent">
+                                <ul class="profile-overview">
+                                    <li class="clearfix"><a (click)="changeCategory('channellist')"><i class="fa fa-user"></i>Edit Channel List</a></li>
+                                    <li class="clearfix"><a (click)="changeCategory('today')"><i class="fa fa-video-camera"></i>Today<span class="float-right">{{todayVideoItemsSize}}</span></a></li>
+                                    <li class="clearfix"><a (click)="changeCategory('thisweek')"><i class="fa fa-heart"></i>This Week<span class="float-right">{{thisweekVideoItemsSize}}</span></a></li>
+                                    <li class="clearfix"><a (click)="changeCategory('mostwatched')"><i class="fa fa-comments-o"></i>Most Watched<span class="float-right">{{viewCountOrderItemsSize}}</span></a></li>
+                                </ul>
+                            </div>
+                            <div *ngIf="this.isUser===true&&this.isFavorate===false">
+                                <button class="button radius primary" (click)="addFavorite()">Add to favorite</button>
+                            </div>
+                            <div *ngIf="this.isUser===true&&this.isFavorate===true">
+                                <button class="button radius primary" (click)="removeFavorite()">Remove from favorite</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+        <div class="large-8 columns profile-inner">
+            <section class="profile-videos">
+                <div class="row secBg">
+                    <div class="large-12 columns"  id="{{TubeItem._id}}">
+                        <div class="profile-inner" >
+                            <section class="content content-with-sidebar followers margin-bottom-10">
+                                <div class="row secBg">
+                                    <div class="large-12 columns">
+                                        <div class="row column head-text clearfix">
+                                            <h4 class="pull-left"><i class="fa fa-users"></i>Channel List</h4>
+                                            <div class="grid-system pull-right">
+                                                <button class="button radius small maincolor" (click)="selectChannelAll()">SELECT ALL</button>
+                                                <button class="button radius small" (click)="unSelectChannelAll()">UNSELECT ALL</button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="large-2 small-6 medium-3 columns" *ngFor="let channel of this.channelList">
+                                                <div class="follower channelbox" (click)="selectChannel($event,channel)">
+                                                        <div class="channel-select">selected</div>
+                                                        <div class="img-bg">
+                                                             <img src={{channel.snippet.thumbnails.medium.url}} alt="followers">
+                                                        </div>
+                                                        <div class="channel-name-wrap">
+                                                            <span class="channel-name">{{channel.name}}</span>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="large-12 columns" *ngIf="this.currentCategory !='channellist'">
+                        <div class="heading">
+                            <i class="fa fa-video-camera"></i>
+                            <h4>{{currentCategory}} Videos</h4>
+                            <div class="grid-system pull-right show-for-large">
+                            </div>
+                        </div>
+
+                        <div class="videos"  *ngFor="let video of this.videoList; let i = index">
+                            <videoInfo *ngIf="i<this.maxShowVideoItems && this.currentCategory !='channellist'"[currentCategory]="this.currentCategory" [video]="this.video" [maxShowVideoItems]="this.maxShowVideoItems" [ShowType]="this.ShowType">
+                        </div>
+                        <div class="show-more-inner text-center">
+                            <a (click)="showmore()" class="show-more-btn" id="showmore-{{TubeItem._id}}">SHOW MORE</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

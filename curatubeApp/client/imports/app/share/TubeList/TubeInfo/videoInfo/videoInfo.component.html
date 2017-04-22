@@ -1,0 +1,69 @@
+<div *ngIf="this.ShowType=='Summery'">
+    <div class="item large-3 medium-6 columns group-item-grid-default" *ngIf="this.video.kind =='youtube#video'">
+        <div class="post thumb-border">
+            <div class="post-thumb">
+                <img src="{{video.snippet.thumbnails.medium.url}}" alt="new video" (click)="goPlay('http://youtube.com/watch?v=' + video.id)">
+                <a (click)="goPlay('http://youtube.com/watch?v=' + video.id)" class="hover-posts">
+                    <span><i class="fa fa-play"></i>Watch Video</span>
+                </a>
+                <div class="video-stats clearfix">
+                    <div class="thumb-stats pull-left">
+                        <!--<h6>{{video.contentDetails.definition }}</h6>-->
+                        <i class="fa fa-eye"></i>
+                        <span>{{video.statistics.viewCount | likeCountComma }}</span>
+                    </div>
+                    <div class="thumb-stats pull-left">
+                        <i class="fa fa-heart"></i>
+                        <span>{{video.statistics.likeCount | likeCountComma }}</span>
+                    </div>
+                    <div class="thumb-stats pull-right">
+                        <span>{{video.contentDetails.duration | playtime }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="post-des">
+                <h6><button (click)="goPlay('http://youtube.com/watch?v=' + video.id)">{{video.snippet.title}}</button></h6>
+                <div class="post-stats clearfix">
+                    <p class="pull-left">
+                        <i class="fa fa-user"></i>
+                        <span><a href="#">{{video.snippet.channelTitle}}</a></span>
+                    </p>
+                    <p class="pull-left">
+                        <i class="fa fa-clock-o"></i>
+                        <span>{{video.snippet.publishedAt | timeSplitT }}</span>
+                    </p>
+                </div>
+                <div class="post-summary">
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                </div>
+                <div class="post-button">
+                    <a (click)="goPlay('http://youtube.com/watch?v=' + video.id)" class="secondary-button"><i class="fa fa-play-circle"></i>watch video</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="this.ShowType=='Detail'">
+    <div class="profile-video">
+        <div class="media-object stack-for-small">
+            <div class="media-object-section media-img-content">
+                <div class="video-img">
+                    <img src="{{video.snippet.thumbnails.medium.url}}" alt="video thumbnail">
+                </div>
+            </div>
+            <div class="media-object-section media-video-content">
+                <div class="video-content">
+                    <h5><a (click)="goPlay('http://youtube.com/watch?v=' + video.id)">{{video.snippet.title}}</a></h5>
+                    <p>{{video.snippet.description | cutDescription}}</p>
+                </div>
+                <div class="video-detail clearfix">
+                    <div class="video-stats">
+                        <span><i class="fa fa-check-square-o"></i>published</span>
+                        <span><i class="fa fa-clock-o"></i>{{video.snippet.publishedAt}}</span>
+                        <span><i class="fa fa-eye"></i>1,862K</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
